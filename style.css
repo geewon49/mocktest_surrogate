@@ -1,0 +1,104 @@
+body { 
+    font-family: 'Prompt', sans-serif; 
+}
+
+.hidden-step { 
+    display: none !important; 
+}
+
+/* Animations */
+.fade-in { 
+    animation: fadeIn 0.5s ease-in-out; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3D Option Buttons */
+.option-btn { 
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
+    border-bottom-width: 4px; /* ทำให้ปุ่มดูนูนขึ้น */
+    border-color: #e5e7eb; /* gray-200 */
+}
+
+.option-btn:hover {
+    transform: translateY(-2px);
+    border-color: #fdba74; /* orange-300 */
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+}
+
+.option-btn:active {
+    transform: translateY(2px);
+    border-bottom-width: 1px;
+    margin-top: 3px; /* ชดเชยความสูงตอนปุ่มยุบลงไป */
+}
+
+.option-btn.selected {
+    background-color: #fffaf5;
+    border-color: #f97316; /* orange-500 */
+    color: #c2410c; /* orange-700 */
+    font-weight: 600;
+    border-bottom-width: 4px;
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+/* Custom Scrollbar for review section */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1; 
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+
+/* Anki-Style 3D Flip Card */
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px; /* สร้างมิติความลึก 3D */
+    width: 100%;
+}
+
+.flip-card-inner {
+    display: grid; /* ใช้ Grid ซ้อนกันเพื่อให้ปรับความสูงอัตโนมัติ */
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* ทำให้หน้าและหลังซ้อนทับกันพอดี */
+.flip-card-front, .flip-card-back {
+    grid-area: 1 / 1;
+    -webkit-backface-visibility: hidden; /* ซ่อนด้านหลังเวลาการ์ดพลิก */
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* ด้านหน้าการ์ด (คำถาม) */
+.flip-card-front {
+    background-color: #ffffff;
+    border: 2px solid #fed7aa; /* orange-200 */
+    z-index: 2;
+}
+
+/* ด้านหลังการ์ด (เฉลย) */
+.flip-card-back {
+    background-color: #fffaf0; /* orange-50 */
+    border: 2px solid #fbbf24; /* amber-400 */
+    transform: rotateY(180deg); /* จับพลิกกลับหลังรอไว้เลย */
+}
+
+/* พลิกการ์ดเมื่อเอาเมาส์ชี้ */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
